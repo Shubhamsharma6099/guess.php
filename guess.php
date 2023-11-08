@@ -3,7 +3,7 @@ session_start();
 
 $correct_answer = 24;
 
-// Check if the user has submitted a guess
+
 if (isset($_POST['guess'])) {
     $guess = intval($_POST['guess']);
     
@@ -15,7 +15,7 @@ if (isset($_POST['guess'])) {
         $message = "Try a lower number!";
     }
 } else {
-    // User hasn't submitted a guess yet
+ 
     $message = "Welcome to the guessing game!";
 }
 
