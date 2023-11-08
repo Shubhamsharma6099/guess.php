@@ -1,26 +1,38 @@
+<?php
+session_start();
+
+$correct_answer = 24;
+
+// Check if the user has submitted a guess
+if (isset($_POST['guess'])) {
+    $guess = intval($_POST['guess']);
+    
+    if ($guess == $correct_answer) {
+        $message = "Congratulations! You guessed the correct number: $correct_answer";
+    } elseif ($guess < $correct_answer) {
+        $message = "Try a higher number!";
+    } else {
+        $message = "Try a lower number!";
+    }
+} else {
+    // User hasn't submitted a guess yet
+    $message = "Welcome to the guessing game!";
+}
+
+?>
+
+<!DOCTYPE html>
 <html>
-<body>
-<title> shubham sharma 87509872 </title>
+<head>
+    <title>87509872</title>
 </head>
 <body>
-<h1>Welcome to my guessing game</h1>
-<p>
-<?php
-  if ( ! isset($_GET['guess']) ) { 
-    echo("Missing guess parameter");
-  } else if ( strlen($_GET['guess']) < 1 ) {
-    echo("Your guess is too short");
-  } else if ( ! is_numeric($_GET['guess']) ) {
-    echo("Your guess is not a number");
-  } else if ( $_GET['guess'] < 42 ) {
-    echo("Your guess is too low");
-  } else if ( $_GET['guess'] > 42 ) {
-    echo("Your guess is too high");
-  } else {
-    echo("Congratulations - You are right");
-  }
-?>
-</p>
+    <h1>Guess the Number Game</h1>
+    <p><?php echo $message; ?></p>
+    <form method="post">
+        <label for="guess">Enter your guess:</label>
+        <input type="number" id="guess" name="guess" min="1" max="100">
+        <input type="submit" value="Submit">
+    </form>
 </body>
 </html>
-  
